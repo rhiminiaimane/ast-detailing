@@ -2,7 +2,7 @@
 
 **Live Website:** [autospatanger.com](https://autospatanger.com)
 
-Auto Spa Tanger is a sleek and responsive business website built using **Next.js** to promote a professional **car detailing** service based in Tangier, Morocco. The site provides an overview of the services offered, package pricing, visual examples of past work, and key business information.
+AutoSpaTanger is a sleek and responsive business website built using **Next.js** to promote a professional **car detailing** service based in Tangier, Morocco. The site provides an overview of the services offered, package pricing, visual examples of past work, and key business information.
 
 ---
 
@@ -21,7 +21,7 @@ Auto Spa Tanger is a sleek and responsive business website built using **Next.js
 The website is composed of the following key pages:
 
 ### 🏠 Home Page
-- Brief introduction to Auto Spa Tanger
+- Brief introduction to AutoSpaTanger
 - Showcase of premium car detailing services
 - Links to other main sections
 
