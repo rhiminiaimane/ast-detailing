@@ -1,4 +1,4 @@
-# Auto Spa Tanger 🚗✨
+# AST Detailing 🚗✨
 
 **Live Website:** [autospatanger.com](https://autospatanger.com)
 
