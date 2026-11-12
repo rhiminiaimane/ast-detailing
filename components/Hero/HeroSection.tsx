@@ -59,7 +59,7 @@ const HeroSection: React.FC = () => {
             Bienvenue chez <br />Auto Spa Detailing
           </h1>
           <div className={styles.heroDescription}>
-            <p>Votre destination de confiance pour le soin automobile haut de gamme.</p>
+            <p>Detailing, traitement céramique et film PPF à Tanger : votre destination de confiance pour le soin automobile haut de gamme.</p>
           </div>
         </div>
       </Reveal>

@@ -16,6 +16,10 @@ const Footer: React.FC<FooterProps> = ({ id }) => {
           {/* Map Section */}
           <div className={styles.card}>
             <h3 className={styles.sectionTitle}>Adresse</h3>
+            <address className={styles.address}>
+              Auto Spa Detailing<br />
+              Dyar Tanja, 90000 Tanger, Maroc
+            </address>
             <Link
               href="https://maps.app.goo.gl/u2n2Zmx6K9zHhju2A"
               target="_blank"

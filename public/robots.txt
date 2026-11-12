@@ -1,4 +1,5 @@
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /api/
 
-Sitemap: https://autospatanger.com/api/sitemap
+Sitemap: https://autospatanger.com/sitemap.xml

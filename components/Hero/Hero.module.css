@@ -82,8 +82,10 @@
 }
 
 .heroDescription {
-  font-size: 2.2rem;
+  font-size: clamp(1rem, 0.8rem + 0.8vw, 1.5rem);
   line-height: 1.6;
+  max-width: 48ch;
+  margin-inline: auto;
 }
 
 /* Color for strong elements in titles and descriptions */
@@ -111,9 +113,7 @@
     font-size: 1.8rem;
   }
 
-  .heroDescription {
-    font-size: 1.4rem;
-  }
+
 }
 
 @media (max-width: 480px) {
@@ -125,7 +125,5 @@
     font-size: 1.6rem;
   }
 
-  .heroDescription {
-    font-size: 0.95rem;
-  }
+
 }

@@ -1,30 +1,24 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const urls = [
-    { loc: 'https://autospatanger.com/', priority: 1.0, changefreq: 'daily' },
-    { loc: 'https://autospatanger.com/services', priority: 0.8, changefreq: 'weekly' },
-    { loc: 'https://autospatanger.com/packs', priority: 0.8, changefreq: 'weekly' },
-    { loc: 'https://autospatanger.com/galerie', priority: 0.6, changefreq: 'monthly' },
-  ];
+const SITE_URL = 'https://autospatanger.com';
 
-  const urlsXml = urls
-    .map(
-      ({ loc, priority, changefreq }) => `
-    <url>
-      <loc>${loc}</loc>
-      <lastmod>${new Date().toISOString()}</lastmod>
-      <changefreq>${changefreq}</changefreq>
-      <priority>${priority}</priority>
-    </url>
-  `
-    )
-    .join('');
+// Bump `lastmod` when a page's content actually changes.
+const urls = [
+  { path: '/', lastmod: '2026-11-12' },
+  { path: '/services/ceramique', lastmod: '2026-11-12' },
+  { path: '/services/ppf', lastmod: '2026-11-12' },
+  { path: '/packs', lastmod: '2026-11-12' },
+  { path: '/galerie', lastmod: '2026-11-12' },
+];
 
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${urlsXml}
-</urlset>`;
+export default function handler(_req: NextApiRequest, res: NextApiResponse) {
+  const body = urls
+    .map(({ path, lastmod }) => `  <url>\n    <loc>${SITE_URL}${path}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`)
+    .join('\n');
 
-  res.status(200).setHeader('Content-Type', 'application/xml').end(sitemap);
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`;
+
+  res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+  res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=604800');
+  res.status(200).send(sitemap);
 }
