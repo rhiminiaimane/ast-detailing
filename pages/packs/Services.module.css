@@ -4,12 +4,10 @@
 }
 
 .pricing {
-  padding: 0rem 2rem;
-  min-height: 100vh;
-  max-height: 300vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: 0 var(--gutter) var(--space-section);
+  box-sizing: border-box;
   font-family: var(--font-sans), sans-serif;
 }
 
@@ -31,10 +29,10 @@
 }
 
 .cards {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: var(--space-lg);
+  align-items: stretch;
 }
 
 .card {
@@ -42,13 +40,11 @@
   border-radius: 10px;
   padding: 2rem;
   width: 100%;
-  max-width: 315px;
+  box-sizing: border-box;
   text-align: center;
   border: 1px solid #00000029;
   display: flex;
   flex-direction: column;
-  height: fit-content;
-  min-height: 450px; /* Add a minimum height to maintain some consistency */
   padding: 1.5rem 1.3rem 1.3rem 2rem;
 }
 
@@ -83,7 +79,6 @@
 .description {
   font-size: 0.9rem;
   color: var(--color-muted);
-  flex-grow: 1;
   overflow: auto;
   text-align: left;
   margin: 0; /* Add this to remove any default margins */
@@ -104,7 +99,7 @@
 }
 
 .features {
-  margin-top: auto;
+  margin-top: var(--space-md);
   list-style: none;
   padding: 0;
   margin-bottom: 1.5rem;
@@ -123,6 +118,7 @@
 }
 
 .button {
+  margin-top: auto;
   display: inline-block;
   padding: 0.75rem 1.5rem;
   background-color: var(--color-ink);

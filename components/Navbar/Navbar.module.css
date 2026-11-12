@@ -12,13 +12,12 @@
   z-index: 1000;
   transition: all 0.3s ease;
   font-family: var(--font-sans), sans-serif;
-  padding-left: 3rem;
-  padding-right: 3rem;
-  margin-bottom: 3rem;
+  /* Same left/right edges as .section-inner */
+  padding-inline: max(var(--gutter), calc((100vw - var(--container-max)) / 2 + var(--gutter)));
 }
 
 .scrolled {
-  padding: 1rem 2rem;
+  padding-block: 1rem;
   background-color: white;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -40,14 +39,15 @@
 
 .navbarLinks {
   display: flex;
-  gap: 2.5rem;
+  gap: clamp(1.25rem, 2.2vw, 2.5rem);
+  white-space: nowrap;
 }
 
 .navbarLinks a {
   text-decoration: none;
   color: black;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: clamp(0.95rem, 0.6rem + 0.45vw, 1.1rem);
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
   position: relative;
@@ -119,19 +119,19 @@
 }
 
 /* Hide 'Detailing' on mobile screens */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1100px) {
   .subBrand {
     display: none;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
   .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.6rem 1.3rem;
-    
+    padding-block: 0.6rem;
+
   }
 
   .navbarLogo {
@@ -150,7 +150,7 @@
   }
 
   .scrolled {
-    padding: 0.8rem 1.5rem;
+    padding-block: 0.8rem;
   }
 
   .navbarLinks {
@@ -216,5 +216,15 @@
   .navbarLinks.active,
   .navbarHamburger span {
     transition: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .mainBrand {
+    font-size: 1.35rem;
+    white-space: nowrap;
+  }
+  .logoImage {
+    height: 44px;
   }
 }
