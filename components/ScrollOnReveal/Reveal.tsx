@@ -24,15 +24,12 @@ const Reveal: React.FC<RevealProps> = ({ children, direction = 'bottom', thresho
       { threshold }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    const node = ref.current;
+    if (node) {
+      observer.observe(node);
     }
 
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
+    return () => observer.disconnect();
   }, [threshold]);
 
   return (

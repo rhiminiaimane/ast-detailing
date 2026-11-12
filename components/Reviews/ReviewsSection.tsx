@@ -79,6 +79,10 @@ const ReviewsSection: React.FC = () => {
 
   const totalPages = Math.ceil(reviews.length / reviewsPerPage);
 
+  useEffect(() => {
+    setCurrentPage((prev) => Math.min(prev, totalPages - 1));
+  }, [totalPages]);
+
   const handlePrev = () => {
     setCurrentPage((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
   };
@@ -100,17 +104,17 @@ const ReviewsSection: React.FC = () => {
         <button
           onClick={handlePrev}
           className={styles.sliderButton}
-          aria-label="Previous reviews"
+          aria-label="Avis précédents"
         >
           <Image 
             src="/icons/slider.png"
-            alt="Previous"
+            alt=""
             width={18}
             height={18}
             className={styles.prevArrow}
           />
         </button>
-        <div className={styles.cardsContainer}>
+        <div className={styles.cardsContainer} aria-live="polite">
           {currentReviews.map((review, index) => (
             <div key={index} className={styles.cardItem}>
               <ReviewCard
@@ -124,11 +128,11 @@ const ReviewsSection: React.FC = () => {
         <button
           onClick={handleNext}
           className={styles.sliderButton}
-          aria-label="Next reviews"
+          aria-label="Avis suivants"
         >
           <Image 
             src="/icons/slider.png"
-            alt="Next"
+            alt=""
             width={18}
             height={18}
             className={styles.nextArrow}
@@ -138,12 +142,19 @@ const ReviewsSection: React.FC = () => {
       </Reveal>
       <div className={styles.pagination}>
         {Array.from({ length: totalPages }).map((_, index) => (
-          <span
+          <button
+            type="button"
             key={index}
-            className={
-              index === currentPage ? styles.dotActive : styles.dot
-            }
-          ></span>
+            className={styles.dotButton}
+            onClick={() => setCurrentPage(index)}
+            aria-label={`Page d'avis ${index + 1} sur ${totalPages}`}
+            aria-current={index === currentPage ? 'true' : undefined}
+          >
+            <span
+              aria-hidden="true"
+              className={index === currentPage ? styles.dotActive : styles.dot}
+            ></span>
+          </button>
         ))}
       </div>
     </section>

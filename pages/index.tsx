@@ -24,7 +24,6 @@ const Home: React.FC = () => {
         <meta charSet="utf-8" />
         <meta name="author" content="AUTO SPA TANGER" />
         <link rel="canonical" href="https://autospatanger.com/" />
-        <link rel="icon" href="/logo.png" type="image/png" />
 
         {/* Schema.org Local Business */}
         <script type="application/ld+json">
@@ -109,7 +108,7 @@ const Home: React.FC = () => {
         <meta property="og:url" content="https://autospatanger.com/" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="fr_MA" />
-        <meta property="og:image" content="https://autospatanger.com/logo.png" />
+        <meta property="og:image" content="https://autospatanger.com/share.jpg" />
         <meta property="og:site_name" content="AUTO SPA TANGER" />
 
         {/* Twitter */}
@@ -122,17 +121,17 @@ const Home: React.FC = () => {
           name="twitter:description"
           content="Traitement céramique, protection PPF et detailing auto à Tanger."
         />
-        <meta name="twitter:image" content="https://autospatanger.com/logo.png" />
+        <meta name="twitter:image" content="https://autospatanger.com/share.jpg" />
         <meta name="twitter:site" content="@autospatanger" />
       </Head>
 
-      <div>
+      <main>
         <HeroSection />
         <AboutSection />
         <ServiceSection />
         <PackSection />
         <ReviewsSection />
-      </div>
+      </main>
 
       <Footer id="contact" />
     </>

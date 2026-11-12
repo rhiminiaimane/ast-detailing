@@ -16,10 +16,15 @@ const Footer: React.FC<FooterProps> = ({ id }) => {
           {/* Map Section */}
           <div className={styles.card}>
             <h3 className={styles.sectionTitle}>Adresse</h3>
-            <Link href="https://maps.app.goo.gl/u2n2Zmx6K9zHhju2A" passHref target="_blank">
+            <Link
+              href="https://maps.app.goo.gl/u2n2Zmx6K9zHhju2A"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Ouvrir notre adresse dans Google Maps"
+            >
               <Image
                 src="/map.png"
-                alt="Map of Auto Spa Detailing location"
+                alt="Plan d'accès à Auto Spa Detailing, Dyar Tanja, Tanger"
                 width={250}
                 height={250}
                 className={styles.mapImage}
@@ -37,13 +42,13 @@ const Footer: React.FC<FooterProps> = ({ id }) => {
                   <span className={styles.icon}>
                     <Image
                       src="/icons/instagram-icon.png"
-                      alt="Instagram Icon"
+                      alt=""
                       width={20}
                       height={20}
                       className={styles.contactIcon}
                     />
                   </span>
-                  <Link href="https://www.instagram.com/auto_spa_detailing_sarl" target="_blank" className={styles.contactLink}>
+                  <Link href="https://www.instagram.com/auto_spa_detailing_sarl" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
                     @auto_spa_detailing_sarl
                   </Link>
                 </p>
@@ -51,23 +56,25 @@ const Footer: React.FC<FooterProps> = ({ id }) => {
                   <span className={styles.icon}>
                     <Image
                       src="/icons/whatsapp-icon-w.png"
-                      alt="Phone Icon"
+                      alt=""
                       width={20}
                       height={20}
                     />
                   </span>
-                  06 62 03 80 56
+                  <a href="tel:+212662038056" className={styles.contactLink}>
+                    06 62 03 80 56
+                  </a>
                 </p>
                 <p className={styles.contactItem}>
                   <span className={styles.icon}>
                     <Image
                       src="/icons/clock-icon.png"
-                      alt="Clock Icon"
+                      alt=""
                       width={20}
                       height={20}
                     />
                   </span>
-                  Merdi - Dimanche<br/>10H : 30 - 20H<br/>
+                  Mardi - Dimanche<br/>10H30 - 20H
                 </p>
               </div>
                 <div className={styles.verticalDivider}></div>
@@ -75,7 +82,7 @@ const Footer: React.FC<FooterProps> = ({ id }) => {
                 <div className={styles.messageContent}>
                     <Image
                         src="/icons/whatsapp.png"
-                        alt="WhatsApp Icon"
+                        alt=""
                         width={50}
                         height={50}
                     />
@@ -89,7 +96,7 @@ const Footer: React.FC<FooterProps> = ({ id }) => {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        Nous Ecrire
+                        Nous écrire
                     </a>
                 </div>
               </div>

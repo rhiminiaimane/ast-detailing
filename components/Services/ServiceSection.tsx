@@ -21,7 +21,7 @@ const ServiceSection: React.FC = () => {
   return (
     <section className={styles.services}>
       <Reveal direction="left">
-      <h2 className={styles.servicesTitle}>Notre Services</h2>
+      <h2 className={styles.servicesTitle}>Nos services</h2>
       
 
       <Link href="/services">
@@ -39,10 +39,10 @@ const ServiceSection: React.FC = () => {
       </Reveal>
       <div className={styles.linkContainer}>
         <Link href="/services" className={styles.servicesLink}>
-          Voir plus de details 
+          Voir plus de détails 
           <Image 
             src="/icons/circle-arrow.png" 
-            alt="arrow" 
+            alt="" 
             width={20} 
             height={20}
             className={styles.arrowImage}

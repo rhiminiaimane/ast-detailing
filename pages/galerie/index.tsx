@@ -84,9 +84,10 @@ const Galerie: React.FC = () => {
   const handleThumbnailClick = (item: typeof galleryItems[0]) => {
     setSelectedImage(item);
     // Scroll to top of the page smoothly
-    window.scrollTo({ 
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({
       top: 0,
-      behavior: 'smooth' 
+      behavior: reduceMotion ? 'auto' : 'smooth',
     });
   };
 
@@ -164,8 +165,9 @@ const Galerie: React.FC = () => {
         <meta name="twitter:site" content="@autospatanger" />
       </Head>
 
-    <div className={styles.container}>
+    <main className={styles.container}>
       <div className={styles.gallery}>
+      <h1 className={styles.pageTitle}>Galerie de nos réalisations</h1>
       <div 
         className={styles.mainImage} 
         ref={mainImageRef}
@@ -183,11 +185,11 @@ const Galerie: React.FC = () => {
             slideDirection === 'right' ? styles.slideRight : ''
           }`}
         />
-        <h3 className={styles.imageTitle}>{selectedImage.Name}</h3>
+        <h2 className={styles.imageTitle} aria-live="polite">{selectedImage.Name}</h2>
       </div>
       <div className={styles.sidebar}>
         <div className={styles.filter}>
-          <label htmlFor="modelFilter">Filter by Model: </label>
+          <label htmlFor="modelFilter">Filtrer par modèle</label>
           <select
             id="modelFilter"
             value={filter}
@@ -196,31 +198,34 @@ const Galerie: React.FC = () => {
           >
             {modelOptions.map(model => (
               <option key={model} value={model}>
-                {model}
+                {model === 'All' ? 'Tous les modèles' : model}
               </option>
             ))}
           </select>
         </div>
         <div className={styles.thumbnails}>
           {filteredItems.map(item => (
-            <div
+            <button
+              type="button"
               key={item.id}
               className={styles.thumbnail}
               onClick={() => handleThumbnailClick(item)}
+              aria-pressed={item.id === selectedImage.id}
+              aria-label={`Afficher ${item.Name} (photo ${item.id})`}
             >
               <Image
                 src={item.image}
-                alt={item.alt}
+                alt=""
                 width={100}
                 height={75}
                 className={styles.thumbnailImage}
               />
-            </div>
+            </button>
           ))}
         </div>
       </div>
     </div>
-    </div>
+    </main>
     </>
   );
 };

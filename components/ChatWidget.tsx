@@ -12,13 +12,12 @@ const ChatWidget: React.FC = () => {
       className={styles.whatsappFloat}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Chat on WhatsApp"
+      aria-label="Nous contacter sur WhatsApp"
     >
-      <span className={styles.badge}>1</span>
-      <span className={styles.popupMessage}>Besoin d&apos;aide ?</span>
+      <span className={styles.popupMessage} aria-hidden="true">Besoin d&apos;aide ?</span>
       <Image
         src="/icons/whatsapp-icon.png"
-        alt="WhatsApp Chat"
+        alt=""
         width={42}
         height={42}
       />
