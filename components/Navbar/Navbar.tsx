@@ -17,9 +17,18 @@ const Navbar: React.FC = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.querySelector(sectionId);
@@ -42,7 +51,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''}`}>
+    <nav aria-label="Navigation principale" className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''}`}>
       <Link href="/" onClick={() => {
         if (router.pathname === '/') {
           window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -63,7 +72,7 @@ const Navbar: React.FC = () => {
         </span>
       </Link>
       
-      <div className={`${styles.navbarLinks} ${isOpen ? styles.active : ''}`}>
+      <div id="main-menu" className={`${styles.navbarLinks} ${isOpen ? styles.active : ''}`}>
         <Link href="/" onClick={() => {
           scrollToSection('.hero');
           setIsOpen(false);
@@ -87,16 +96,18 @@ const Navbar: React.FC = () => {
         </Link>
       </div>
 
-      <div 
-        className={`${styles.navbarHamburger} ${isOpen ? styles.active : ''}`} 
+      <button
+        type="button"
+        className={`${styles.navbarHamburger} ${isOpen ? styles.active : ''}`}
         onClick={toggleMenu}
-        aria-label="Menu"
+        aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
         aria-expanded={isOpen}
+        aria-controls="main-menu"
       >
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
     </nav>
   );
 };

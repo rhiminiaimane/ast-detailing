@@ -24,3 +24,15 @@
   opacity: 1;
   transform: translate(0, 0);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.left,
+  .reveal.right,
+  .reveal.top,
+  .reveal.bottom {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

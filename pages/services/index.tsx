@@ -97,6 +97,8 @@ const Services: React.FC = () => {
     <div className={styles.pageContainer}>
       <div className={styles.buttonGroup}>
         <button
+          type="button"
+          aria-pressed={activeService === 'ceramic'}
           className={`${styles.toggleButton} ${activeService === 'ceramic' ? styles.active : ''}`}
           onClick={() => {
             setActiveService('ceramic');
@@ -106,6 +108,8 @@ const Services: React.FC = () => {
           Revêtement Céramique
         </button>
         <button
+          type="button"
+          aria-pressed={activeService === 'ppf'}
           className={`${styles.toggleButton} ${activeService === 'ppf' ? styles.active : ''}`}
           onClick={() => {
             setActiveService('ppf');
@@ -120,7 +124,7 @@ const Services: React.FC = () => {
         <>
           <Reveal direction='left'>
           <div className={styles.introText}>
-            <h2>Traitement Céramique à Auto Spa – Brillance, Protection et Excellence</h2>
+            <h1>Traitement Céramique à Auto Spa – Brillance, Protection et Excellence</h1>
             <p>
               Vous êtes à la recherche du meilleur soin pour votre voiture à Auto Spa Tanger ? Le traitement céramique automobile est la solution idéale pour offrir à votre véhicule une brillance éclatante, une protection durable et une valeur ajoutée inégalée.
             </p>
@@ -137,7 +141,7 @@ const Services: React.FC = () => {
                 <div className={styles.carImageContainer}>
                   <Image src={car.image} alt={car.label} width={300} height={300} />
                 </div>
-                <h3 className={styles.carLabel}>{car.label}</h3>
+                <h2 className={styles.carLabel}>{car.label}</h2>
                 {/* Example car names for each size, under carLabel */}
                 <div className={styles.exampleCars}>
                   {car.size === 'M' && (
@@ -167,7 +171,7 @@ const Services: React.FC = () => {
           </Reveal>
           <Reveal direction='left'>
           <div className={styles.extraSection}>
-            <h3 className={styles.sectionTitle}>Options Extra</h3>
+            <h2 className={styles.sectionTitle}>Options extra</h2>
             <div className={styles.extraItems}>
               {extraPricing.map((item, index) => (
                 <div className={styles.extraItem} key={index}>
@@ -182,7 +186,7 @@ const Services: React.FC = () => {
           </Reveal>
           <Reveal direction='bottom'>
           <div className={styles.advantages}>
-            <h3>🔒 Les avantages du traitement céramique à Auto Spa Tanger</h3>
+            <h2>🔒 Les avantages du traitement céramique à Auto Spa Tanger</h2>
             <ul>
               <li>Protection maximale contre le climat de Tanger : Résistance aux UV, pluie salée, sable, fientes d’oiseaux et micro-rayures.</li>
               <li>Finition ultra-brillante : Une peinture éclatante avec un effet miroir luxueux.</li>
@@ -198,7 +202,7 @@ const Services: React.FC = () => {
         <>
           <Reveal direction='left'>
           <div className={styles.introText}>
-            <h2>Film de Protection de Peinture (PPF) à Auto Spa Tanger – La Protection Invisible Ultime</h2>
+            <h1>Film de Protection de Peinture (PPF) à Auto Spa Tanger – La Protection Invisible Ultime</h1>
             <p>
               Vous souhaitez protéger la carrosserie de votre voiture contre les agressions du quotidien ? Le film de protection de peinture (PPF) est la solution haut de gamme pour préserver l’éclat de votre véhicule tout en gardant un aspect d’origine impeccable.
             </p>
@@ -237,7 +241,7 @@ const Services: React.FC = () => {
           </Reveal>
           <Reveal direction='right'>
           <div className={styles.advantages}>
-            <h3>🛡️ Pourquoi choisir un film de protection PPF à Tanger ?</h3>
+            <h2>🛡️ Pourquoi choisir un film de protection PPF à Tanger ?</h2>
             <ul>
               <li>Protection contre les impacts et rayures : Le film PPF agit comme une seconde peau contre les éclats de gravillons, les rayures, les frottements et les agressions mécaniques.</li>
               <li>Résistance aux UV et à l’oxydation : Idéal pour le climat ensoleillé de Tanger, il empêche la décoloration de la peinture.</li>

@@ -31,7 +31,7 @@ const PackSection: React.FC = () => {
   return (
     <section className={styles.services}>
       <Reveal direction="left">
-      <h2 className={styles.servicesTitle}>Notre Packs</h2>
+      <h2 className={styles.servicesTitle}>Nos packs</h2>
       <div className={styles.cardsContainer}>
         {packs.map((service, index) => (
           <ServiceCard 
@@ -45,10 +45,10 @@ const PackSection: React.FC = () => {
       </Reveal>
       <div className={styles.linkContainer}>
         <Link href="/packs" className={styles.servicesLink}>
-          Voir plus de details 
+          Voir plus de détails 
           <Image 
             src="/icons/circle-arrow.png" 
-            alt="arrow" 
+            alt="" 
             width={20} 
             height={20}
             className={styles.arrowImage}

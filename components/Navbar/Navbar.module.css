@@ -1,19 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 0rem;
-  background-color: #f5f5f5;
+  background-color: var(--color-surface);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
   transition: all 0.3s ease;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-sans), sans-serif;
   padding-left: 3rem;
   padding-right: 3rem;
   margin-bottom: 3rem;
@@ -28,7 +26,7 @@
 .navbarLogo {
   font-weight: 700;
   font-size: 1.5rem;
-  color: #f8ad19;
+  color: var(--color-accent-text);
   letter-spacing: 1px;
   display: flex;
   align-items: center;
@@ -58,7 +56,7 @@
 }
 
 .navbarLinks a:hover {
-  color: #f8ad19;
+  color: var(--color-accent-text);
 }
 
 .navbarLinks a::after {
@@ -68,7 +66,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background-color: #f8ad19;
+  background-color: var(--color-accent);
   transition: width 0.3s ease;
 }
 
@@ -80,8 +78,13 @@
   display: none;
   flex-direction: column;
   justify-content: space-between;
+  box-sizing: content-box;
   width: 28px;
   height: 20px;
+  padding: 12px 8px;
+  margin-right: -8px;
+  background: none;
+  border: 0;
   cursor: pointer;
   z-index: 1001;
 }
@@ -102,9 +105,9 @@
 }
 
 .mainBrand {
-  font-family: 'Dancing Script', cursive;
+  font-family: var(--font-script), cursive;
   font-size: 2rem; /* Adjust as needed */
-  color: #f8ad19;  /* Or your preferred color */
+  color: var(--color-accent-text);  /* Or your preferred color */
   letter-spacing: 1px;
 }
 
@@ -162,12 +165,16 @@
     align-items: center;
     gap: 2.5rem;
     transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    /* visibility keeps the closed menu out of the tab order and screen readers */
+    visibility: hidden;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), visibility 0s linear 0.4s;
     z-index: 1000;
   }
 
   .navbarLinks.active {
     transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), visibility 0s;
   }
 
   .navbarLinks a {
@@ -203,7 +210,11 @@
   }
 }
 
-.light {
-  font-weight: normal;
-  color: #014AAC;
+@media (prefers-reduced-motion: reduce) {
+  .navbar,
+  .navbarLinks,
+  .navbarLinks.active,
+  .navbarHamburger span {
+    transition: none;
+  }
 }

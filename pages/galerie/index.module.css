@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
 
 .container{
-  background: linear-gradient(to bottom, #f5f5f5, #ffffff);
+  background: linear-gradient(to bottom, var(--color-surface), #ffffff);
 }
 
 .gallery {
@@ -10,7 +9,7 @@
   gap: 2rem;
   flex-wrap: wrap;
   padding-top: 110px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-sans), sans-serif;
   justify-content: center; /* Add this to keep the div centered */
 }
 
@@ -20,22 +19,22 @@
   aspect-ratio: 1 / 1;  /* Ensure square aspect ratio */
   width: 100%;
   max-width: 520px;      /* Increased from 400px */
-  min-width: 320px;      /* Increased from 250px */
+  min-width: min(320px, 100%);
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  touch-action: pan-x; /* Enable horizontal touch gestures */
+  touch-action: pan-y; /* Page scrolls vertically; horizontal swipes go to the JS handler */
   overflow: hidden; /* Prevent content from spilling */
   user-select: none; /* Prevent text selection during swipe */
 }
 
 .image {
-  width: 500px;
-  height: 500px;  /* for 4/3 ratio */
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 24px;
   transition: all 0.3s ease-out;
-  will-change: transform;
 }
 
 
@@ -71,7 +70,7 @@
   font-size: 1.25rem;
   font-weight: 600;
   margin: 0.5rem 0;
-  color: #333;
+  color: var(--color-ink);
 }
 
 .sidebar {
@@ -90,10 +89,10 @@
   border-radius: 5px;
   width: 100%;
   font-weight: 500;
-  font-family: 'Montserrat';
+  font-family: var(--font-sans), sans-serif;
   margin-top: 25px;
   margin-bottom: 10px;
-  border: #f8ad19 1px solid;
+  border: var(--color-brand) 1px solid;
 }
 
 .thumbnails {
@@ -102,11 +101,27 @@
   gap: 0.5rem;
 }
 
+.pageTitle {
+  width: 100%;
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-brand);
+  margin: 0;
+}
+
 .thumbnail {
   cursor: pointer;
   border: 2px solid transparent;
+  border-radius: 7px;
   position: relative;
   aspect-ratio: 1 / 1;
+  padding: 0;
+  background: none;
+}
+
+.thumbnail[aria-pressed='true'] {
+  border-color: var(--color-brand);
 }
 
 .thumbnailImage {
@@ -116,4 +131,11 @@
   display: block; /* ADD THIS */
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 14px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slideLeft,
+  .slideRight {
+    animation: none;
+  }
 }
