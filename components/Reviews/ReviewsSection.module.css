@@ -1,19 +1,4 @@
 
-.reviews {
-  padding: 2rem 1rem; /* Reduced horizontal padding for mobile */
-  text-align: center;
-  font-family: var(--font-sans), sans-serif;
-  background-color: var(--color-surface);
-}
-
-.reviewsTitle {
-  color: var(--color-accent-text);
-  font-size: 1.25rem; /* Slightly smaller on mobile */
-  font-weight: 500;
-  margin-bottom: 1.5rem;
-  text-align: left;
-  padding-left: 2rem;
-}
 
 .sliderContainer {
   display: flex;
@@ -32,6 +17,7 @@
   width: 100%;
   position: relative;
   justify-content: center;
+  align-items: stretch;
 }
 
 .cardItem {
@@ -40,7 +26,7 @@
   justify-content: center;
   box-sizing: border-box;
   min-width: 100%; /* Ensures full width on mobile */
-  padding: 0rem .5rem 0rem 0.5rem;
+  padding: 0;
 }
 
 .sliderButton {
@@ -96,31 +82,11 @@
   transform: rotate(0deg);
 }
 
-@media (width <= 768px) {
-    .reviewsTitle{
-        text-align: center;
-        padding: 0%;
-        font-size: 1.75rem;
-        margin: 0%;
-        font-weight: 700;
-    }
-}
 
 /* Add media queries for larger screens */
 @media (min-width: 768px) {
-  .reviews {
-    padding: 4rem 2rem;
-  }
-
-  .reviewsTitle {
-    font-size: 1.75rem;
-    margin: 0px;
-    font-weight: 700;
-  }
-
   .cardsContainer {
-    gap: 1rem;
-    max-width: 1050px; /* Increased max-width to fit 3 cards */
+    gap: var(--space-lg);
   }
 
   .cardItem {
@@ -130,6 +96,14 @@
 
   .sliderButton {
     font-size: 1.5rem;
-    padding: 0 1rem;
+    padding: 0 var(--space-md);
+  }
+
+  .sliderButton:first-child {
+    padding-left: 0;
+  }
+
+  .sliderButton:last-child {
+    padding-right: 0;
   }
 }

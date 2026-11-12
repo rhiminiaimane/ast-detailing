@@ -1,29 +1,32 @@
-import styles from './ServiceCard.module.css';
+import Link from 'next/link';
 import Image from 'next/image';
+import styles from './ServiceCard.module.css';
 
 interface ServiceCardProps {
   title: string;
   description: string;
   imageUrl: string;
+  href: string;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, imageUrl }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, imageUrl, href }) => {
   return (
-    <div className={styles.card}>
+    <Link href={href} className={styles.card}>
       <div className={styles.imageContainer}>
         <Image
           src={imageUrl}
-          alt={title}
+          alt=""
           fill
-          style={{ objectFit: 'cover' }}
+          sizes="(max-width: 560px) 100vw, 220px"
           className={styles.image}
         />
       </div>
-      <div className={styles.contentContainer}>
+      <div className={styles.content}>
         <h3 className={styles.cardTitle}>{title}</h3>
         <p className={styles.cardDescription}>{description}</p>
+        <span className={styles.more} aria-hidden="true">En savoir plus →</span>
       </div>
-    </div>
+    </Link>
   );
 };
 

@@ -1,41 +1,38 @@
 import styles from './AboutSection.module.css';
 import Image from 'next/image';
-import Reveal from '../ScrollOnReveal/Reveal'; // Assuming you have a Reveal component for animations
+import Reveal from '../ScrollOnReveal/Reveal';
 
 const AboutSection: React.FC = () => {
   return (
-    <section className={styles.aboutSection}>
-      <Reveal direction="left"> 
-        <h2 className={styles.aboutTitle}>Qui sommes nous ?</h2><br />
-      </Reveal>
-      <div className={styles.aboutContent}>
-        <Reveal direction="left">
-          <div className={styles.aboutImage}>
-            <Image
-              src="/garage.jpg" // Change this path if your image is elsewhere
-              alt="Auto Spa Detailing"
-              width={400}
-              height={350}
-              className={styles.img}
-            />
-          </div>
-        </Reveal>
-        <Reveal direction="right">
-          <div className={styles.aboutText}>
-            
-            <div className={styles.centerText}>
-              <p className={styles.highlight}>
+    <section className="section" aria-labelledby="about-title">
+      <div className="section-inner">
+        <div className={styles.grid}>
+          <Reveal direction="left">
+            <div className={styles.media}>
+              <Image
+                src="/garage.jpg"
+                alt="L'atelier Auto Spa Detailing à Tanger"
+                fill
+                sizes="(max-width: 900px) 100vw, 480px"
+                className={styles.img}
+              />
+            </div>
+          </Reveal>
+          <Reveal direction="right">
+            <div className={styles.text}>
+              <h2 id="about-title" className="section-title">Qui sommes nous ?</h2>
+              <p className={styles.lead}>
                 <strong>Auto Spa Detailing</strong>, c’est une équipe passionnée par l’automobile, dédiée à sublimer et protéger votre véhicule.
               </p>
-              <br />
-              <div className={styles.aboutDescription}>
-                <p>
-                  Grâce à des technologies de pointe comme <strong className={styles.highlight2}>le revêtement céramique 🚗, la correction de peinture ✨, ou encore la pose de films de protection PPF 🛡️</strong>, nous garantissons à votre véhicule une protection durable et une apparence irréprochable.<br />Chaque intervention est réalisée avec le plus grand soin, dans le respect des spécificités de chaque voiture et des attentes de son propriétaire.
-                </p>
-              </div>
+              <p className={styles.body}>
+                Grâce à des technologies de pointe comme <strong className={styles.highlight}>le revêtement céramique, la correction de peinture, ou encore la pose de films de protection PPF</strong>, nous garantissons à votre véhicule une protection durable et une apparence irréprochable.
+              </p>
+              <p className={styles.body}>
+                Chaque intervention est réalisée avec le plus grand soin, dans le respect des spécificités de chaque voiture et des attentes de son propriétaire.
+              </p>
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

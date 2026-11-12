@@ -1,10 +1,11 @@
 
 .wrapper {
-  max-width: 400px;
-  min-height: 377px;
+  width: 100%;
+  min-height: 300px;
   display: flex;
   flex-direction: column;
-  margin: 30px auto;
+  margin: 30px 0 0;
+  box-sizing: border-box;
   padding: 20px;
   position: relative;
   padding-top: 40px;  /* Added to give space for the quote */

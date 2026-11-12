@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import ServiceCard from './PackCard';
+import PackCard from './PackCard';
 import styles from './PackSection.module.css';
 import Reveal from '../ScrollOnReveal/Reveal';
 
@@ -29,31 +29,24 @@ const packs = [
 
 const PackSection: React.FC = () => {
   return (
-    <section className={styles.services}>
-      <Reveal direction="left">
-      <h2 className={styles.servicesTitle}>Nos packs</h2>
-      <div className={styles.cardsContainer}>
-        {packs.map((service, index) => (
-          <ServiceCard 
-            key={index} 
-            title={service.title} 
-            description={service.description}
-            imageUrl={service.imageUrl}
-          />
-        ))}
-      </div>
-      </Reveal>
-      <div className={styles.linkContainer}>
-        <Link href="/packs" className={styles.servicesLink}>
-          Voir plus de détails 
-          <Image 
-            src="/icons/circle-arrow.png" 
-            alt="" 
-            width={20} 
-            height={20}
-            className={styles.arrowImage}
-          />
-        </Link>
+    <section className="section" aria-labelledby="packs-title">
+      <div className="section-inner">
+        <div className="section-header">
+          <h2 id="packs-title" className="section-title">Nos packs</h2>
+          <Link href="/packs" className="section-link">
+            Voir plus de détails
+            <Image src="/icons/circle-arrow.png" alt="" width={20} height={20} />
+          </Link>
+        </div>
+        <Reveal direction="bottom">
+          <ul className={styles.grid}>
+            {packs.map((pack) => (
+              <li key={pack.title}>
+                <PackCard {...pack} />
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
     </section>
   );

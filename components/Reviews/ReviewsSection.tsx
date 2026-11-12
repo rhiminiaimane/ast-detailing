@@ -97,11 +97,15 @@ const ReviewsSection: React.FC = () => {
   );
 
   return (
-    <section className={styles.reviews}>
-      <Reveal direction="left">
-      <h2 className={styles.reviewsTitle}>Avis</h2>
+    <section className="section" aria-labelledby="reviews-title">
+      <div className="section-inner">
+      <div className="section-header">
+        <h2 id="reviews-title" className="section-title">Avis</h2>
+      </div>
+      <Reveal direction="bottom">
       <div className={styles.sliderContainer}>
         <button
+          type="button"
           onClick={handlePrev}
           className={styles.sliderButton}
           aria-label="Avis précédents"
@@ -126,6 +130,7 @@ const ReviewsSection: React.FC = () => {
           ))}
         </div>
         <button
+          type="button"
           onClick={handleNext}
           className={styles.sliderButton}
           aria-label="Avis suivants"
@@ -156,6 +161,7 @@ const ReviewsSection: React.FC = () => {
             ></span>
           </button>
         ))}
+      </div>
       </div>
     </section>
   );
