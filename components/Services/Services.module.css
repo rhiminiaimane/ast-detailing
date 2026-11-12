@@ -1,75 +1,12 @@
-
-.services {
-  padding: 0rem 2rem;
-  text-align: left;
-  font-family: var(--font-sans), sans-serif;
-  background-color: var(--color-surface);
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
+  gap: var(--space-lg);
 }
 
-.servicesTitle {
-  color: var(--color-accent-text);
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
-  text-align: left;
-  padding-left: 2rem;
-}
-
-.cardsContainer {
+.grid > li {
   display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-}
-
-.linkContainer {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 2rem;
-  transition: transform 0.3s ease;
-}
-
-
-.linkContainer:hover {
-  transform: translateX(10px);
-}
-
-.servicesLink {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-  color: var(--color-brand);
-  font-weight: 700;
-  padding-right: 2rem;
-}
-
-.arrow {
-  font-size: 1.2rem;
-  margin-left: 0.5rem;
-}
-
-.arrowImage {
-  transition: transform 0.3s ease;
-}
-
-/* Remove or comment out this if you don't want the arrow to have its own animation
-.servicesLink:hover .arrowImage {
-  transform: translateX(5px);
-} */
-
-@media (max-width: 768px) {
-  .servicesTitle {
-    text-align: center;
-    padding: 0%;
-  }
-  .servicesLink {
-    font-size: 0.8rem;
-  }
-  .servicesLink {
-    padding-right: 0rem;
-  }
-
 }

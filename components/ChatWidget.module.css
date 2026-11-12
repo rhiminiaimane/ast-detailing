@@ -50,3 +50,15 @@
     transform: none;
   }
 }
+
+@media (max-width: 480px) {
+  .popupMessage {
+    display: none;
+  }
+  .whatsappFloat {
+    width: 52px;
+    height: 52px;
+    right: 16px;
+    bottom: 16px;
+  }
+}

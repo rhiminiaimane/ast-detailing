@@ -39,6 +39,7 @@
 
 /* Text Content */
 .textContent {
+  position: relative; /* keeps the text above the overlay even without a transform */
   display: flex;
   flex-direction: column;
   justify-content: center;
