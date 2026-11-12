@@ -16,6 +16,8 @@
 }
 
 .toggleButton {
+  display: inline-block;
+  text-decoration: none;
   padding: 12px 30px;
   font-size: 16px;
   font-weight: 600;

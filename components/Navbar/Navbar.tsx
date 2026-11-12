@@ -79,10 +79,10 @@ const Navbar: React.FC = () => {
         }}>
           ACCUEIL
         </Link>
-        <Link href="/services?service=ceramic" onClick={() => setIsOpen(false)}>
+        <Link href="/services/ceramique" onClick={() => setIsOpen(false)}>
           NANO CERAMIC
         </Link>
-        <Link href="/services?service=ppf" onClick={() => setIsOpen(false)}>
+        <Link href="/services/ppf" onClick={() => setIsOpen(false)}>
           PPF
         </Link>
         <Link href="/packs" onClick={() => setIsOpen(false)}>

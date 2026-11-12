@@ -1,22 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
+import type { GetStaticPaths, GetStaticProps } from 'next';
 import styles from './index.module.css';
 import Reveal from '@/components/ScrollOnReveal/Reveal';
-import Head from 'next/head';
+import Seo, { breadcrumb, PROVIDER } from '@/components/Seo/Seo';
 
-const Services: React.FC = () => {
-  const router = useRouter();
-  const { service } = router.query;
-  const [activeService, setActiveService] = useState<'ceramic' | 'ppf'>(
-    service === 'ppf' ? 'ppf' : 'ceramic'
-  );
+type ServiceSlug = 'ceramique' | 'ppf';
+const SLUGS: ServiceSlug[] = ['ceramique', 'ppf'];
 
-  useEffect(() => {
-    if (service === 'ceramic' || service === 'ppf') {
-      setActiveService(service);
-    }
-  }, [service]);
+const Services: React.FC<{ service: ServiceSlug }> = ({ service }) => {
+  const activeService = service === 'ppf' ? 'ppf' : 'ceramic';
 
   const ceramicPricing = [
     {
@@ -60,65 +54,65 @@ const Services: React.FC = () => {
 
   return (
     <>
-    <Head>
-        <title>Services Auto Spa Tanger | Traitement Céramique & PPF</title>
-        <meta
-          name="description"
-          content="Découvrez nos services de traitement céramique, nano ceramic, film de protection peinture (PPF) et auto spa à Tanger. Protection premium pour votre véhicule."
-        />
-        <meta
-          name="keywords"
-          content="traitement céramique Tanger, nano ceramic Tanger, PPF Tanger, auto spa Tanger, protection peinture Tanger, detailing Tanger, lavage auto Tanger"
-        />
-        <link rel="canonical" href="https://autospatanger.com/services" />
+    {activeService === 'ceramic' ? (
+      <Seo
+        title="Traitement céramique voiture à Tanger | Auto Spa Detailing"
+        description="Traitement nano céramique à Tanger : brillance miroir, effet hydrophobe et jusqu'à 5 ans de protection. Dès 3760 DHS selon la taille du véhicule."
+        path="/services/ceramique"
+        jsonLd={[
+          breadcrumb([{ name: 'Traitement céramique', path: '/services/ceramique' }]),
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: 'Traitement nano céramique',
+            serviceType: 'Revêtement céramique automobile',
+            areaServed: { '@type': 'City', name: 'Tanger' },
+            provider: PROVIDER,
+            offers: ceramicPricing.map((car) => ({
+              '@type': 'Offer',
+              name: car.label,
+              price: car.price.replace(/\D/g, ''),
+              priceCurrency: 'MAD',
+            })),
+          },
+        ]}
+      />
+    ) : (
+      <Seo
+        title="Film de protection PPF à Tanger | Auto Spa Detailing"
+        description="Pose de film de protection de peinture (PPF) à Tanger : protection invisible contre gravillons et rayures, effet auto-cicatrisant, découpe sur mesure."
+        path="/services/ppf"
+        jsonLd={[
+          breadcrumb([{ name: 'Film de protection PPF', path: '/services/ppf' }]),
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: 'Film de protection de peinture (PPF)',
+            serviceType: 'Pose de film de protection carrosserie',
+            areaServed: { '@type': 'City', name: 'Tanger' },
+            provider: PROVIDER,
+          },
+        ]}
+      />
+    )}
 
-        {/* Open Graph */}
-        <meta property="og:title" content="Services Auto Spa Tanger | Traitement Céramique & PPF" />
-        <meta
-          property="og:description"
-          content="Nos services premium à Tanger : traitement céramique, nano ceramic, film de protection peinture (PPF) et auto spa pour une protection optimale."
-        />
-        <meta property="og:url" content="https://autospatanger.com/services" />
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="fr_MA" />
-        <meta property="og:image" content="https://autospatanger.com/share.jpg" />
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Services Auto Spa Tanger | Traitement Céramique & PPF" />
-        <meta
-          name="twitter:description"
-          content="Traitement céramique, PPF et auto spa professionnel à Tanger pour protéger et embellir votre véhicule."
-        />
-        <meta name="twitter:image" content="https://autospatanger.com/share.jpg" />
-        <meta name="twitter:site" content="@autospatanger" />
-      </Head>
-
-    <div className={styles.pageContainer}>
-      <div className={styles.buttonGroup}>
-        <button
-          type="button"
-          aria-pressed={activeService === 'ceramic'}
+    <main className={styles.pageContainer}>
+      <nav className={styles.buttonGroup} aria-label="Nos services">
+        <Link
+          href="/services/ceramique"
+          aria-current={activeService === 'ceramic' ? 'page' : undefined}
           className={`${styles.toggleButton} ${activeService === 'ceramic' ? styles.active : ''}`}
-          onClick={() => {
-            setActiveService('ceramic');
-            router.push('/services?service=ceramic', undefined, { shallow: true });
-          }}
         >
           Revêtement Céramique
-        </button>
-        <button
-          type="button"
-          aria-pressed={activeService === 'ppf'}
+        </Link>
+        <Link
+          href="/services/ppf"
+          aria-current={activeService === 'ppf' ? 'page' : undefined}
           className={`${styles.toggleButton} ${activeService === 'ppf' ? styles.active : ''}`}
-          onClick={() => {
-            setActiveService('ppf');
-            router.push('/services?service=ppf', undefined, { shallow: true });
-          }}
         >
           Film PPF
-        </button>
-      </div>
+        </Link>
+      </nav>
 
       {activeService === 'ceramic' ? (
         <>
@@ -213,7 +207,7 @@ const Services: React.FC = () => {
             <div style={{ marginTop: '24px', display: 'flex', justifyContent: 'center', gap: '24px', flexWrap: 'wrap' }}>
               <Image
                 src="/cars/ppf_image1.jpeg"
-                alt="Film PPF Auto Spa Tanger"
+                alt="Pose de film PPF transparent sur une carrosserie à Tanger"
                 className={styles.responsiveImage}
                 width={350}
                 height={220}
@@ -225,7 +219,7 @@ const Services: React.FC = () => {
               />
               <Image
                 src="/cars/ppf_image2.jpeg"
-                alt="Film PPF Auto Spa Tanger"
+                alt="Film de protection PPF appliqué sur l'avant d'un véhicule"
                 className={styles.responsiveImage}
                 width={350}
                 height={220}
@@ -254,9 +248,18 @@ const Services: React.FC = () => {
           </Reveal>
         </>
       )}
-    </div>
+    </main>
     </>
   );
 };
+
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: SLUGS.map((service) => ({ params: { service } })),
+  fallback: false,
+});
+
+export const getStaticProps: GetStaticProps<{ service: ServiceSlug }> = async ({ params }) => ({
+  props: { service: params?.service as ServiceSlug },
+});
 
 export default Services;

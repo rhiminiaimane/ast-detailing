@@ -1,5 +1,5 @@
 import styles from './Services.module.css';
-import Head from 'next/head';
+import Seo, { breadcrumb, PROVIDER } from '@/components/Seo/Seo';
 
 
 const packs = [
@@ -96,42 +96,34 @@ const Packs: React.FC = () => {
 
   return (
     <>
-      <Head>
-          <title>Nos Packs Detailing à Auto Spa Tanger | Nettoyage & Soins Auto</title>
-          <meta
-            name="description"
-            content="Découvrez nos packs detailing à Auto Spa Tanger : nettoyage voiture, soin cuir, polissage, cire premium, traitement céramique et protection PPF. Nettoyage auto professionnel à Tanger."
-          />
-          <meta
-            name="keywords"
-            content="nettoyage voiture Tanger, detailing auto Tanger, soin voiture Tanger, polissage voiture Tanger, auto spa Tanger, lavage voiture Tanger, traitement céramique Tanger, PPF Tanger, protection peinture Tanger"
-          />
-          <link rel="canonical" href="https://autospatanger.com/packs" />
-
-          {/* Open Graph */}
-          <meta property="og:title" content="Nos Packs Detailing à Auto Spa Tanger | Nettoyage & Soins Auto" />
-          <meta
-            property="og:description"
-            content="Découvrez nos packs detailing complets : nettoyage, soin cuir, polissage, cire premium, traitement céramique et protection PPF à Tanger."
-          />
-          <meta property="og:url" content="https://autospatanger.com/packs" />
-          <meta property="og:type" content="website" />
-          <meta property="og:locale" content="fr_MA" />
-          <meta property="og:image" content="https://autospatanger.com/share.jpg" />
-
-          {/* Twitter */}
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content="Nos Packs Detailing à Auto Spa Tanger | Nettoyage & Soins Auto" />
-          <meta
-            name="twitter:description"
-            content="Nos packs detailing professionnels incluent nettoyage, soin cuir, polissage, cire premium, traitement céramique et protection PPF à Tanger."
-          />
-          <meta name="twitter:image" content="https://autospatanger.com/share.jpg" />
-          <meta name="twitter:site" content="@autospatanger" />
-        </Head>
+      <Seo
+        title="Packs detailing et nettoyage voiture à Tanger | Auto Spa"
+        description="Packs Maintenance, Platinum, Diamond et Titanium à Tanger : lavage à la main, soin du cuir, polissage et cire premium. À partir de 120 DH."
+        path="/packs"
+        jsonLd={[
+          breadcrumb([{ name: 'Packs', path: '/packs' }]),
+          {
+            '@context': 'https://schema.org',
+            '@type': 'OfferCatalog',
+            name: 'Packs detailing Auto Spa Tanger',
+            itemListElement: packs.map((pack) => ({
+              '@type': 'Offer',
+              price: pack.price.amount,
+              priceCurrency: 'MAD',
+              itemOffered: {
+                '@type': 'Service',
+                name: pack.title,
+                description: pack.description,
+                provider: PROVIDER,
+                areaServed: { '@type': 'City', name: 'Tanger' },
+              },
+            })),
+          },
+        ]}
+      />
 
     
-    <div className={styles.container}>
+    <main className={styles.container}>
       <h1 className={styles.title}>Nos Packs de Services</h1>
       <div className={styles.pricing}>
         <div className={styles.cards}>
@@ -181,7 +173,7 @@ const Packs: React.FC = () => {
           })}
         </div>
       </div>
-    </div>
+    </main>
     </>
   );
 };

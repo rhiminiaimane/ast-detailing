@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar/Navbar';
 import ChatWidget from '@/components/ChatWidget';
 import '../styles/globals.css';
 import { Analytics } from '@vercel/analytics/next';
+import Head from 'next/head';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -26,6 +27,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           --font-script: ${dancingScript.style.fontFamily};
         }
       `}</style>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       <Navbar />
       <Component {...pageProps} />
       <ChatWidget />
